@@ -15,9 +15,9 @@ import Metronome from './Component/Dashboard/Metronome.js';
 
 function App() {
   return (
-    <Router>
+    <Router basename='/Vibrato'>
       <Routes>       
-        <Route path="/" element={<Home />} />
+        <Route exact path="/Vibrato" element={<Home />} />
         <Route path="/LearnMusic" element={<LearnMusic />} />
         <Route path="/login" element={<Login />} />
         <Route path="/MainDashboard" element={<Dashboard />} />
