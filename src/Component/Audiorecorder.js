@@ -1,39 +1,64 @@
-import React,{useState,useRef} from 'react';
+import React, { useState, useRef } from 'react';
+import './Audiorecorder.css';
 
+export default function Audiorecorder() {
+  const audioChunk = useRef([]);
+  const [recordings, setRecordings] = useState([]);
+  const [currentRecording, setCurrentRecording] = useState(null);
+  const mediaRecorderRef = useRef(null);
 
-export default function Audiorecorder(){
+  const startRec = async () => {
+    // Clear the previous audio chunks
+    audioChunk.current = [];
 
-    const audioChunk=useRef([]);
-    const [recordings,setRecordings]=useState([])
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorderRef.current = mediaRecorder;
 
+    mediaRecorder.ondataavailable = (e) => {
+      if (e.data.size > 0) {
+        audioChunk.current.push(e.data);
+      }
+    };
 
+    mediaRecorder.onstop = () => {
+      const audioBlob = new Blob(audioChunk.current, { type: 'audio/wav' });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      setRecordings((prevRecs) => [...prevRecs, audioUrl]);
+      setCurrentRecording(audioUrl); // Set the current recording URL
+    };
 
-    const startRec=async()=>{
-      const stream= await navigator.mediaDevices.getUserMedia({audio:true});
-      const mediaRecorder =new MediaRecorder(stream);
+    mediaRecorder.start();
+  };
 
-      mediaRecorder.ondataavailable=(e)=>{
-        if(e.data.size>0){
+  const stopRec = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+      mediaRecorderRef.current.ondataavailable = (e) => {
+        if (e.data.size > 0) {
           audioChunk.current.push(e.data);
         }
-      }
-      mediaRecorder.onstop=()=>{
-        const audioBlob= new Blob(audioChunk.current,{type:'audio/wav'});
-        const audioUrl=URL.createObjectURL(audioBlob);
-        setRecordings((prevRecs)=>[...prevRecs,audioUrl]);
-      
-    }}
-    const stopRec=()=>{
+      };
 
-    };
-  return(
-      <div>
-        <button onClick={startRec}>Start</button>
-        <button onClick={stopRec}>Stop</button>
-        
+      mediaRecorderRef.current.onstop = () => {
+        const audioBlob = new Blob(audioChunk.current, { type: 'audio/wav' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        setRecordings((prevRecs) => [...prevRecs, audioUrl]);
+        setCurrentRecording(audioUrl); // Set the current recording URL
+      };
 
-      </div>
+      mediaRecorderRef.current.stop();
+    }
+  };
 
-
+  return (
+    <div className='recaudio'>
+      <button className='btnrecc' onClick={startRec}>Start</button>
+      <button className='btnrecc' onClick={stopRec}>Stop</button>
+      {currentRecording && (
+        <div>
+          <audio controls src={currentRecording} />
+        </div>
+      )}
+    </div>
   );
 }

@@ -37,8 +37,7 @@ export default function GenMusic(){
                     <div className="descbut-container"><button className='descbut' onClick={handlesubmit}>Submit</button></div>
                 </div>
                 <div className="slider-container">
-                    <p className='adjusttime'>AdjustTime:</p>
-            
+                    <p className='adjusttime'>AdjustTime:</p>          
                     <input type='range' className='slider'min="1"max="20" value={sliderValue} onChange={handleSliderChange}></input>
                     <p className='svalue'>{sliderValue}</p>
                 </div> 
