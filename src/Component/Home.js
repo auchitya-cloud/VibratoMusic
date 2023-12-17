@@ -47,9 +47,12 @@ export default function Home(){
         <h1 className='captions3'>We also have the Music generator.It generates music and songs based on your taste and even your mood</h1>
         
         <div className="one-container">
-        <section id='GenMusiclogo'>
-            <Link  to='/GenMusic' id='GenMusic'><img className='GenMusiclogo' src={genmusic} alt='genMusic'></img></Link></section>
-        </div>
+      <section id='GenMusiclogo'>
+        <Link to='https://vibrato-hebmzczcmvnrpiyeammr8c.streamlit.app/' id='GenMusic'>
+            <img className='GenMusiclogo' src={genmusic} alt='genMusic' />
+        </Link>
+      </section>
+    </div>
         <div className="row-container">          
             <div className='div'>
               <img src={cost} className='btimgs1' alt='costfriendly'></img>

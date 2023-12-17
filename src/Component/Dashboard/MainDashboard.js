@@ -24,14 +24,14 @@ export default function MainDashboard(){
                         <Link to ='/LearnMusic' className='Plist1'><p>LearnMusic</p></Link>
                     </ul>
                     <ul>
-                        <Link to ='/GenMusic' className='Plist1'><p>GenerateMusic</p></Link>
+                        <Link to ='https://vibrato-hebmzczcmvnrpiyeammr8c.streamlit.app/' className='Plist1'><p>GenerateMusic</p></Link>
                     </ul>
                     <ul>
                         <Link to ='/Songs' className='Plist1'><p>Songs</p></Link>
                     </ul>
                     <ul>
-            <Link to='/Metronome' className='Plist1'><p>Metronome</p></Link>
-          </ul>
+                        <Link to='/Metronome' className='Plist1'><p>Metronome</p></Link>
+                    </ul>
                     
                 </div>
             </div>
