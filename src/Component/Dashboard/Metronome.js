@@ -103,9 +103,7 @@ export default function Metronome() {
             data-toggle="dropdown"
           ></img>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <Link className="dropdown-item" to="#">
-              Change Password
-            </Link>
+            
             <Link className="dropdown-item" to="/Login">
               Logout
             </Link>

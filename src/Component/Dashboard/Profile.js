@@ -44,7 +44,7 @@ export default function Profile(){
                     <Link to ='/Profile' className='prof_pic'><img src={profile_pic} alt='profile_pic' className='prof_pic' ></img></Link>
                     <img src={Settings} alt='settings' className="dropdown-toggle3" id="dropdownMenuButton" data-toggle="dropdown"></img>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <Link className="dropdown-item" to="#">change Password</Link>
+                                
                                 <Link className="dropdown-item" to="/Login">Logout</Link>
             
                             </div>
